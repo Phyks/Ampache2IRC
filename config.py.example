@@ -1,0 +1,11 @@
+server = ""  # IRC server to connect to
+port = 6667  # Port to use
+use_ssl = False  # Use SSL for IRC connection?
+channel = ""  # Channel to join
+
+password = ""  # Used for NickServ
+
+nick = "ampache_playing"  # IRC Nickname
+desc = ""  # IRC Realname
+
+ampache_URL = ""  # Base URL of Ampache without trailing slash
