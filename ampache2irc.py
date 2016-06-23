@@ -12,6 +12,8 @@ import irc.connection
 
 import config
 
+from haikunator import Haikunator
+
 
 class Ampache2IRC(irc.bot.SingleServerIRCBot):
     """
@@ -39,11 +41,12 @@ class Ampache2IRC(irc.bot.SingleServerIRCBot):
         for entry in d.entries:
             if(self.last_seen is None or
                entry.published_parsed > self.last_seen):
+                haikunator = Haikunator(entry.comments
+				.replace(config.ampache_URL, "")
+				.strip("/"))
                 serv.privmsg(config.channel,
                              "%s (%s)" % (entry.title,
-                                          (entry.comments
-                                           .replace(config.ampache_URL, "")
-                                           .strip("/"))))
+                                          haikunator.haikunate(token_length=0)))
                 self.last_seen = entry.published_parsed
 
     def on_welcome(self, serv, ev):
