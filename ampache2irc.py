@@ -45,8 +45,9 @@ class Ampache2IRC(irc.bot.SingleServerIRCBot):
 				.replace(config.ampache_URL, "")
 				.strip("/"))
                 serv.privmsg(config.channel,
-                             "%s (%s)" % (entry.title,
-                                          haikunator.haikunate(token_length=0)))
+                             "%c%02d %s (%s)" %
+                             (3, 14, entry.title,
+			      haikunator.haikunate(token_length=0)))
                 self.last_seen = entry.published_parsed
 
     def on_welcome(self, serv, ev):
