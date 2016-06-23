@@ -40,10 +40,11 @@ class Ampache2IRC(irc.bot.SingleServerIRCBot):
             if(self.last_seen is None or
                entry.published_parsed > self.last_seen):
                 serv.privmsg(config.channel,
-                             "%s (%s)" % (entry.title,
-                                          (entry.comments
-                                           .replace(config.ampache_URL, "")
-                                           .strip("/"))))
+                             "%c%02d %s (%s)" %
+                             (3, 14, entry.title,
+                              (entry.comments
+                               .replace(config.ampache_URL, "")
+                               .strip("/"))))
                 self.last_seen = entry.published_parsed
 
     def on_welcome(self, serv, ev):
