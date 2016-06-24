@@ -44,10 +44,12 @@ class Ampache2IRC(irc.bot.SingleServerIRCBot):
                 haikunator = Haikunator(entry.comments
                                         .replace(config.ampache_URL, "")
                                         .strip("/"))
+                name = haikunator.haikunate(token_length=0).replace("-", " ")
+                name = name.title()
                 serv.privmsg(config.channel,
-                             "%c%02d %s (%s)" %
+                             "%c%02d%s (%s)" %
                              (3, 14, entry.title,
-                              haikunator.haikunate(token_length=0)))
+                              name))
                 self.last_seen = entry.published_parsed
 
     def on_welcome(self, serv, ev):
